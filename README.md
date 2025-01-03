@@ -1,5 +1,7 @@
 # Nyra Agent Framework
 
+[![Watch the Showcase Video](https://img.youtube.com/vi/Uz8djygCPCY/maxresdefault.jpg)](https://youtu.be/Uz8djygCPCY)
+
 ## Prerequisites
 
 | Category | Requirements |
