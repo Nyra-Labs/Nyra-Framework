@@ -1,0 +1,27 @@
+{
+  "type": "system",
+  "name": "nyra_runtime_python",
+  "version": "0.6.0",
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "nyra_runtime",
+      "version": "0.6.0"
+    }
+  ],
+  "package": {
+    "include": [
+      "manifest.json",
+      "BUILD.gn",
+      "interface/**",
+      "tools/**",
+      "lib/**"
+    ]
+  },
+  "supports": [
+    {
+      "os": "linux",
+      "arch": "x64"
+    }
+  ]
+}

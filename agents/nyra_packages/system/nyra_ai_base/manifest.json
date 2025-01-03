@@ -1,0 +1,20 @@
+{
+  "type": "system",
+  "name": "nyra_ai_base",
+  "version": "0.1.0",
+  "package": {
+    "include": [
+      "manifest.json",
+      "interface/**",
+      "requirements.txt"
+    ]
+  },
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "nyra_runtime_python",
+      "version": "0.6"
+    }
+  ],
+  "api": {}
+}

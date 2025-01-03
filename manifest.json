@@ -1,0 +1,17 @@
+{
+  "type": "app",
+  "name": "agent_dev",
+  "version": "0.6.0",
+  "dependencies": [
+    {
+      "type": "system",
+      "name": "nyra_runtime_go",
+      "version": "0.6"
+    },
+    {
+      "type": "system",
+      "name": "nyra_runtime_python",
+      "version": "0.6"
+    }
+  ]
+}

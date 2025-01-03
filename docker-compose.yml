@@ -1,0 +1,52 @@
+version: '3'
+
+services:
+  nyra_agent_dev:
+    image: nyra_agent_build:0.3.3
+    platform: linux/amd64
+    container_name: nyra_agent_dev
+    tty: true
+    stdin_open: true
+    command: /bin/bash
+    volumes:
+      - .:/app
+    ports:
+      - "${SERVER_PORT}:${SERVER_PORT}"
+      - "${GRAPH_DESIGNER_SERVER_PORT}:${GRAPH_DESIGNER_SERVER_PORT}"
+    environment:
+      - PYTHONPATH=${PYTHONPATH}
+    env_file:
+      - .env
+    networks:
+      - nyra_agent_network
+
+  nyra_agent_playground:
+    build:
+      context: ./playground
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    container_name: nyra_agent_playground
+    ports:
+      - "3000:3000"
+    networks:
+      - nyra_agent_network
+    environment:
+      - AGENT_SERVER_URL=http://nyra_agent_dev:${SERVER_PORT}
+      - NYRA_DEV_SERVER_URL=http://nyra_agent_dev:${GRAPH_DESIGNER_SERVER_PORT}
+
+  nyra_agent_demo:
+    build:
+      context: ./demo
+      dockerfile: Dockerfile
+    platform: linux/amd64
+    container_name: nyra_agent_demo
+    ports:
+      - "3001:3000"
+    networks:
+      - nyra_agent_network
+    environment:
+      - AGENT_SERVER_URL=http://nyra_agent_dev:${SERVER_PORT}
+
+networks:
+  nyra_agent_network:
+    driver: bridge

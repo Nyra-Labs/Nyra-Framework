@@ -1,0 +1,60 @@
+{
+    "typeCheckingMode": "basic",
+    "reportUnusedCoroutine": "error",
+    "reportMissingAwait": "error",
+    "reportUnawaitedAsyncFunctions": "error",
+    "reportArgumentType": false,
+    "reportMissingParameterType": false,
+    "reportAssignmentType": false,
+    "reportAttributeAccessIssue": false,
+    "reportOptionalMemberAccess": false,
+    "reportOptionalContextManager": false,
+    "reportCallIssue": false,
+    "reportGeneralTypeIssues": "warning",
+    "reportReturnType": false,
+    "reportUnboundVariable": false,
+    "reportOptionalSubscript": false,
+    "reportOptionalIterable": false,
+    "reportOperatorIssue": false,
+    "exclude": [
+        "**/node_modules",
+        "**/__pycache__",
+        "**/.*",
+        "**/build",
+        "**/dist",
+        "**/venv",
+        "**/env",
+        "**/out",
+        "**/bin",
+        "**/lib",
+        "**/interface",
+        "**/include",
+        "**/pb",
+        "**/realtime",
+        "**/src",
+        "**/test",
+        "**/tests",
+        "**/examples",
+        "**/docs",
+        "./agents/nyra_packages/system/nyra_runtime_python/**/*",
+        "**/nyra_runtime_python/**/*"
+    ],
+    "include": [
+        "agents"
+    ],
+    "executionEnvironments": [
+        {
+            "root": "./agents",
+            "extraPaths": [
+                "./agents/nyra_packages/system/nyra_runtime_python/interface",
+                "./agents/nyra_packages/system/nyra_ai_base/interface"
+            ]
+        }
+    ],
+    "pythonVersion": "3.10",
+    "pythonPlatform": "Linux",
+    "extraPaths": [
+        "./agents/nyra_packages/system/nyra_runtime_python/interface",
+        "./agents/nyra_packages/system/nyra_ai_base/interface"
+    ]
+}

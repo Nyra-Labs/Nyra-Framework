@@ -1,0 +1,49 @@
+#
+# Copyright © 2024 Agora
+# This file is part of NYRA Framework, an open source project.
+# Licensed under the Apache License, Version 2.0, with certain conditions.
+# Refer to the "LICENSE" file in the root directory for more information.
+#
+config("nyra_runtime_go_common_libs") {
+  if (is_win) {
+    libs = [ "nyra_runtime_go.dll.lib" ]
+  } else {
+    libs = [ "nyra_runtime_go" ]
+  }
+}
+
+config("nyra_runtime_go_common_config") {
+  configs = [ ":nyra_runtime_go_common_libs" ]
+
+  include_dirs = [ "//nyra_packages/system/nyra_runtime_go/include" ]
+  lib_dirs = [ "//nyra_packages/system/nyra_runtime_go/lib" ]
+}
+
+config("config_for_app") {
+  configs = [ ":nyra_runtime_go_common_config" ]
+
+  if (is_linux) {
+    ldflags =
+        [ "-Wl,-rpath=\$ORIGIN/../nyra_packages/system/nyra_runtime_go/lib" ]
+  } else if (is_mac) {
+    ldflags =
+        [ "-Wl,-rpath,@loader_path/../nyra_packages/system/nyra_runtime_go/lib" ]
+  }
+}
+
+config("config_for_nyra_packages") {
+  configs = [ ":nyra_runtime_go_common_config" ]
+
+  if (is_linux) {
+    ldflags = [ "-Wl,-rpath=\$ORIGIN/../../../system/nyra_runtime_go/lib" ]
+  } else if (is_mac) {
+    ldflags = [ "-Wl,-rpath,@loader_path/../../../system/nyra_runtime_go/lib" ]
+  }
+}
+
+config("config_for_standalone_nyra_packages") {
+  configs = [ ":nyra_runtime_go_common_libs" ]
+
+  include_dirs = [ "//.ten/app/nyra_packages/system/nyra_runtime_go/include" ]
+  lib_dirs = [ "//.ten/app/nyra_packages/system/nyra_runtime_go/lib" ]
+}

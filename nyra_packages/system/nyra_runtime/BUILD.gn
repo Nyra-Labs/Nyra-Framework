@@ -1,0 +1,72 @@
+#
+# Copyright © 2024 Agora
+# This file is part of NYRAA Framework, an open source project.
+# Licensed under the Apache License, Version 2.0, with certain conditions.
+# Refer to the "LICENSE" file in the root directory for more information.
+#
+import("//build/feature/nyra_package.gni")
+
+config("nyra_runtime_common_libs") {
+  if (is_win) {
+    libs = [
+      "nyra_runtime.dll.lib",
+      "nyra_utils.dll.lib",
+    ]
+  } else {
+    libs = [
+      "nyra_runtime",
+      "nyra_utils",
+    ]
+  }
+}
+
+config("nyra_runtime_common_config") {
+  configs = [ ":nyra_runtime_common_libs" ]
+
+  include_dirs = [ "//nyra_packages/system/nyra_runtime/include" ]
+  lib_dirs = [ "//nyra_packages/system/nyra_runtime/lib" ]
+}
+
+config("config_for_app") {
+  configs = [ ":nyra_runtime_common_config" ]
+
+  if (is_linux) {
+    ldflags = [ "-Wl,-rpath=\$ORIGIN/../nyra_packages/system/nyra_runtime/lib" ]
+  } else if (is_mac) {
+    ldflags =
+        [ "-Wl,-rpath,@loader_path/../nyra_packages/system/nyra_runtime/lib" ]
+  }
+}
+
+config("config_for_nyra_packages") {
+  configs = [ ":nyra_runtime_common_config" ]
+
+  if (is_linux) {
+    ldflags = [ "-Wl,-rpath=\$ORIGIN/../../../system/nyra_runtime/lib" ]
+  } else if (is_mac) {
+    ldflags = [ "-Wl,-rpath,@loader_path/../../../system/nyra_runtime/lib" ]
+  }
+}
+
+config("config_for_standalone_nyra_packages") {
+  configs = [ ":nyra_runtime_common_libs" ]
+
+  include_dirs = [ "//.ten/app/nyra_packages/system/nyra_runtime/include" ]
+  lib_dirs = [ "//.ten/app/nyra_packages/system/nyra_runtime/lib" ]
+
+  if (is_linux) {
+    ldflags = [ "-Wl,-rpath=\$ORIGIN/../nyra_packages/system/nyra_runtime/lib" ]
+  } else if (is_mac) {
+    ldflags =
+        [ "-Wl,-rpath,@loader_path/../nyra_packages/system/nyra_runtime/lib" ]
+  }
+}
+
+nyra_package("nyra_runtime") {
+  package_kind = "system"
+
+  resources = [
+    "lib",
+    "manifest.json",
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "packages": [
+    {
+      "type": "system",
+      "name": "nyra_runtime_go",
+      "version": "0.6.0",
+      "hash": "76bf593bd12ce6d9a893c7e0e432332add7dacf81682cf2c3b4480d59b848aa8",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "nyra_runtime"
+        }
+      ],
+      "supports": [
+        {
+          "os": "linux",
+          "arch": "x64"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "nyra_runtime_python",
+      "version": "0.6.0",
+      "hash": "7e04ce93ca9280708da5bc04b644a9400ce2ff5c22dcb26db9217cd9b839f1ff",
+      "dependencies": [
+        {
+          "type": "system",
+          "name": "nyra_runtime"
+        }
+      ],
+      "supports": [
+        {
+          "os": "linux",
+          "arch": "x64"
+        }
+      ]
+    },
+    {
+      "type": "system",
+      "name": "nyra_runtime",
+      "version": "0.6.0",
+      "hash": "577dd71670a092f1cd73956e6e35430615d54664ed824a6c6244d95b090853d9",
+      "supports": [
+        {
+          "os": "linux",
+          "arch": "x64"
+        }
+      ]
+    }
+  ]
+}
